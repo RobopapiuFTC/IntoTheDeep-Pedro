@@ -206,7 +206,7 @@ public class AutoColor extends OpMode{
                     robot.ServoBrat.setPosition(0.6);
                     robot.ServoBrat1.setPosition(0.6);
                     Thread.sleep(200);
-                    robot.Cleste.setPosition(0.5);
+                    robot.Cleste.setPosition(0.6);
                     Thread.sleep(100);
                     follower.followPath(positionLine1, true);
                     setPathState(2);
@@ -253,53 +253,109 @@ public class AutoColor extends OpMode{
             case 8:
                 if(!follower.isBusy()) {
                     follower.followPath(humanPickup1,true);
+                    if(follower.getPose().getY() < 20) {
+                        robot.ServoBrat.setPosition(1);
+                        robot.ServoBrat1.setPosition(1);
+                    }
                     setPathState(9);
                 }
                 break;
             case 9:
                 if(!follower.isBusy()) {
+                    robot.Cleste.setPosition(0.2);
+                    Thread.sleep(200);
+                    robot.ServoBrat.setPosition(0.5);
+                    robot.ServoBrat1.setPosition(0.5);
+                    Thread.sleep(50);
                     follower.followPath(scorePickup1,true);
                     setPathState(10);
                 }
                 break;
             case 10:
                 if(!follower.isBusy()) {
+                    robot.ServoBrat.setPosition(0.6);
+                    robot.ServoBrat1.setPosition(0.6);
+                    Thread.sleep(200);
+                    robot.Cleste.setPosition(0.6);
+                    Thread.sleep(100);
                     follower.followPath(humanPickup2,true);
+                    if(follower.getPose().getY() < 60) {
+                        robot.ServoBrat.setPosition(1);
+                        robot.ServoBrat1.setPosition(1);
+                    }
                     setPathState(11);
                 }
                 break;
             case 11:
                 if(!follower.isBusy()) {
+                    robot.Cleste.setPosition(0.2);
+                    Thread.sleep(200);
+                    robot.ServoBrat.setPosition(0.5);
+                    robot.ServoBrat1.setPosition(0.5);
+                    Thread.sleep(50);
                     follower.followPath(scorePickup2,true);
                     setPathState(12);
                 }
                 break;
             case 12:
                 if(!follower.isBusy()) {
+                    robot.ServoBrat.setPosition(0.6);
+                    robot.ServoBrat1.setPosition(0.6);
+                    Thread.sleep(200);
+                    robot.Cleste.setPosition(0.6);
+                    Thread.sleep(100);
                     follower.followPath(humanPickup3,true);
+                    if(follower.getPose().getY() < 60) {
+                        robot.ServoBrat.setPosition(1);
+                        robot.ServoBrat1.setPosition(1);
+                    }
                     setPathState(13);
                 }
                 break;
             case 13:
                 if(!follower.isBusy()) {
+                    robot.Cleste.setPosition(0.2);
+                    Thread.sleep(200);
+                    robot.ServoBrat.setPosition(0.5);
+                    robot.ServoBrat1.setPosition(0.5);
+                    Thread.sleep(50);
                     follower.followPath(scorePickup3,true);
                     setPathState(14);
                 }
                 break;
             case 14:
                 if(!follower.isBusy()) {
+                    robot.ServoBrat.setPosition(0.6);
+                    robot.ServoBrat1.setPosition(0.6);
+                    Thread.sleep(200);
+                    robot.Cleste.setPosition(0.6);
+                    Thread.sleep(100);
                     follower.followPath(humanPickup4,true);
+                    if(follower.getPose().getY() < 60) {
+                        robot.ServoBrat.setPosition(1);
+                        robot.ServoBrat1.setPosition(1);
+                    }
                     setPathState(15);
                 }
                 break;
             case 15:
                 if(!follower.isBusy()) {
+                    robot.Cleste.setPosition(0.2);
+                    Thread.sleep(200);
+                    robot.ServoBrat.setPosition(0.5);
+                    robot.ServoBrat1.setPosition(0.5);
+                    Thread.sleep(50);
                     follower.followPath(scorePickup4,true);
                     setPathState(16);
                 }
                 break;
             case 16:
                 if(!follower.isBusy()) {
+                    robot.ServoBrat.setPosition(0.6);
+                    robot.ServoBrat1.setPosition(0.6);
+                    Thread.sleep(200);
+                    robot.Cleste.setPosition(0.6);
+                    Thread.sleep(100);
                     follower.followPath(park,true);
                     setPathState(17);
                 }
