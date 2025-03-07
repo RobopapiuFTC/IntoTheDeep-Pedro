@@ -37,7 +37,6 @@ public class AutoColor extends OpMode{
     private Path scorePreload, park;
     private PathChain positionLine1,linePickup1, linePickup2, linePickup3, humanLeave1, humanLeave2, humanLeave3, scorePickup1, scorePickup2, scorePickup3, scorePickup4, humanPickup1, humanPickup2, humanPickup3, humanPickup4;
     public void buildPaths() {
-        // Path for scoring preload
         scorePreload = new Path(new BezierLine(new Point(startPose), new Point(scorePose)));
         scorePreload.setLinearHeadingInterpolation(startPose.getHeading(), scorePose.getHeading());
 
@@ -375,15 +374,13 @@ public class AutoColor extends OpMode{
     @Override
     public void loop() {
 
-        // These loop the movements of the robot
         follower.update();
         try {
             autonomousPathUpdate();
         } catch (InterruptedException e) {
         }
+        robot.poseteleop=follower.getPose();
 
-
-        // Feedback to Driver Hub
         telemetry.addData("path state", pathState);
         telemetry.addData("x", follower.getPose().getX());
         telemetry.addData("y", follower.getPose().getY());
@@ -391,7 +388,6 @@ public class AutoColor extends OpMode{
         telemetry.update();
     }
 
-    /** This method is called once at the init of the OpMode. **/
     @Override
     public void init() {
         pathTimer = new Timer();
@@ -417,15 +413,12 @@ public class AutoColor extends OpMode{
     @Override
     public void init_loop() {}
 
-    /** This method is called once at the start of the OpMode.
-     * It runs all the setup actions, including building paths and starting the path system **/
     @Override
     public void start() {
         opmodeTimer.resetTimer();
         setPathState(0);
     }
 
-    /** We do not use this because everything should automatically disable **/
     @Override
     public void stop() {
     }

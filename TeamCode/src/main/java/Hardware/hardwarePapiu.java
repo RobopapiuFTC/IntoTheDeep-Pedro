@@ -1,5 +1,6 @@
 package Hardware;
 
+import com.pedropathing.localization.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -11,6 +12,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import Hardware.VariableStorage;
+import com.pedropathing.pathgen.Path;
 
 public class hardwarePapiu {
 
@@ -44,6 +46,7 @@ public class hardwarePapiu {
     public boolean isOpenR=true, isOpen=true, isOpenI=false, isOpenRI=false,isOpenRR=false,isOpenA=false,isOpenC=false,isOpenF=false;
     public static double red,blue,green,alpha;
     public boolean infata=false, ok=true;
+    public Pose poseteleop;
     int i=0;
 
 
