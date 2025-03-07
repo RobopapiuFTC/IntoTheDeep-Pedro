@@ -398,6 +398,10 @@ public class AutoColor extends OpMode{
         robot.misumi.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.misumi.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         robot.misumi.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.Glisiera.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.Glisiera.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        robot.Glisiera1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.Glisiera1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         robot.ServoBrat.setPosition(0.4);
         robot.ServoBrat1.setPosition(0.4);

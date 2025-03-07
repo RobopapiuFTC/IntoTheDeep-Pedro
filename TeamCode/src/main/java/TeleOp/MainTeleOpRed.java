@@ -2,12 +2,16 @@
 package TeleOp;
 
 import com.pedropathing.follower.Follower;
+import com.pedropathing.util.Constants;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import Hardware.hardwarePapiu;
+import com.pedropathing.util.Constants;
+import pedroPathing.constants.FConstants;
+import pedroPathing.constants.LConstants;
 
 @TeleOp(name = "MainTeleOpRed", group = "A")
 public class MainTeleOpRed extends OpMode {
@@ -17,9 +21,12 @@ public class MainTeleOpRed extends OpMode {
     public boolean trebe=true,ok=true;
     private Follower follower;
 
+
     @Override
     public void init() {
         robot.init();
+        Constants.setConstants(FConstants.class, LConstants.class);
+        follower = new Follower(hardwareMap);
         follower.setStartingPose(robot.poseteleop);
     }
 
