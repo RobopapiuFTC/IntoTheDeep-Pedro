@@ -40,22 +40,13 @@ public class AutoColor extends OpMode{
         scorePreload = new Path(new BezierLine(new Point(startPose), new Point(scorePose)));
         scorePreload.setLinearHeadingInterpolation(startPose.getHeading(), scorePose.getHeading());
 
-        positionLine1 = follower.pathBuilder()
-                .addPath(
-                        new BezierLine(
-                                new Point(40.000, 68.000, Point.CARTESIAN),
-                                new Point(20.000, 29.000, Point.CARTESIAN)
-                        )
-                )
-                .setConstantHeadingInterpolation(Math.toRadians(180))
-                .build();
-
         linePickup1 = follower.pathBuilder()
                 .addPath(new BezierCurve(
-                                new Point(20.000, 29.000, Point.CARTESIAN),
-                                new Point(32.483, 35.088, Point.CARTESIAN),
-                                new Point(55.411, 41.689, Point.CARTESIAN),
-                                new Point(58.000, 24.000, Point.CARTESIAN)
+                        new Point(40.000, 68.000, Point.CARTESIAN),
+                        new Point(7.416, 23.971, Point.CARTESIAN),
+                        new Point(27.938, 24.489, Point.CARTESIAN),
+                        new Point(72.604, 51.047, Point.CARTESIAN),
+                        new Point(58.000, 24.000, Point.CARTESIAN)
                         )
                 )
                 .setLinearHeadingInterpolation(Math.toRadians(180), Math.toRadians(90))
@@ -198,26 +189,27 @@ public class AutoColor extends OpMode{
         switch (pathState) {
             case 0:
                 follower.followPath(scorePreload);
+                robot.miscareglisiera("little",robot.Glisiera,robot.Glisiera1);
                 setPathState(1);
                 break;
             case 1:
                 if(!follower.isBusy()) {
-                    robot.miscareglisiera("little",robot.Glisiera,robot.Glisiera1);
-                    Thread.sleep(100);
                     robot.ServoBrat.setPosition(0.6);
                     robot.ServoBrat1.setPosition(0.6);
                     Thread.sleep(200);
                     robot.Cleste.setPosition(0.6);
                     Thread.sleep(100);
-                    follower.followPath(positionLine1, true);
                     setPathState(2);
                 }
                 break;
             case 2:
                 if(!follower.isBusy()) {
-                    robot.ServoBrat.setPosition(0.4);
-                    robot.ServoBrat1.setPosition(0.4);
                     follower.followPath(linePickup1,true);
+                    if(follower.getPose().getY() < 50) {
+                        robot.ServoBrat.setPosition(0.4);
+                        robot.ServoBrat1.setPosition(0.4);
+                    }
+
                     setPathState(3);
                 }
                 break;
@@ -358,6 +350,7 @@ public class AutoColor extends OpMode{
                     robot.Cleste.setPosition(0.6);
                     Thread.sleep(100);
                     follower.followPath(park,true);
+                    robot.miscareglisiera("down",robot.Glisiera,robot.Glisiera1);
                     setPathState(17);
                 }
                 break;
@@ -407,7 +400,7 @@ public class AutoColor extends OpMode{
 
         robot.ServoBrat.setPosition(0.4);
         robot.ServoBrat1.setPosition(0.4);
-        robot.Cleste.setPosition(0.23);
+        robot.Cleste.setPosition(0.2);
 
         Constants.setConstants(FConstants.class, LConstants.class);
         follower = new Follower(hardwareMap);

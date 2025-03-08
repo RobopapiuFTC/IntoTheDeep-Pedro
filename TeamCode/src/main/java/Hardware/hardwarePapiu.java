@@ -63,26 +63,23 @@ public class hardwarePapiu {
         Glisiera = myOpMode.hardwareMap.get(DcMotorEx.class, "glisiera");
         Glisiera1 = myOpMode.hardwareMap.get(DcMotorEx.class, "glisiera1");
         misumi = myOpMode.hardwareMap.get(DcMotorEx.class, "misumi");
-       // ClesteS=myOpMode.hardwareMap.get(Servo.class, "clestes");
         IntakeActive = myOpMode.hardwareMap.get(DcMotorEx.class, "active");
         ServoBrat = myOpMode.hardwareMap.get(Servo.class, "brat");
         ServoBrat1 = myOpMode.hardwareMap.get(Servo.class, "brat1");
         Intake1 = myOpMode.hardwareMap.get(Servo.class, "intake1");
         Intake2 = myOpMode.hardwareMap.get(Servo.class, "intake2");
-       Cleste = myOpMode.hardwareMap.get(Servo.class, "cleste");
-       faras = myOpMode.hardwareMap.get(Servo.class, "faras");
-      // catarare = myOpMode.hardwareMap.get(Servo.class, "catarare");
-       culoare = myOpMode.hardwareMap.get(ColorSensor.class, "culoare");
+        Cleste = myOpMode.hardwareMap.get(Servo.class, "cleste");
+        faras = myOpMode.hardwareMap.get(Servo.class, "faras");
+        culoare = myOpMode.hardwareMap.get(ColorSensor.class, "culoare");
+
         //Configurari
         Glisiera.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         Glisiera1.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
         culoare.enableLed(true);
-     //   catarare.setPosition(0.5);
         faras.setPosition(0.5);
-       Intake1.setPosition(0.95);
+        Intake1.setPosition(0.95);
         Intake2.setPosition(0.05);
         Cleste.setPosition(0.47);
-      //  ClesteS.setPosition(0.26);
         Glisiera1.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -91,15 +88,14 @@ public class hardwarePapiu {
         misumi.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
     public void movement(Gamepad gamepad1){
-
         double drive = -gamepad1.left_stick_y; // Remember, Y stick is reversed!
         double strafe = gamepad1.left_stick_x; // Counteract imperfect strafing
         double turn = gamepad1.right_stick_x;
 
         double frontLeftPower = (drive + strafe + turn);
-        double backLeftPower = (drive - strafe + turn + 0.05);
+        double backLeftPower = (drive - strafe + turn);
         double frontRightPower = (drive - strafe - turn);
-        double backRightPower = (drive + strafe - turn + 0.15);
+        double backRightPower = (drive + strafe - turn);
         if(gamepad1.right_trigger>0.3){
             leftFront.setPower(frontLeftPower/3);
             leftBack.setPower(backLeftPower/3);
@@ -113,19 +109,8 @@ public class hardwarePapiu {
         }
 
     }
-   /* public void miscareservo(Gamepad gamepad1){
-        if(gamepad1.x){
-            ServoBrat.setPower(1);
-        }
-        if(gamepad1.b){
-            ServoBrat.setPower(-1);
-        }
-        if(!gamepad1.x && !gamepad1.b)ServoBrat.setPower(0);
-    } */
     public void miscaremisumi(String direction, DcMotorEx Glisiera){
-
         int a=0;
-
         if(Objects.equals(direction, "up")){
             int ticks = (int)(upm * VariableStorage.TICKS_PER_CM_Z);
             Glisiera.setTargetPosition(-ticks+a);
@@ -157,39 +142,7 @@ public class hardwarePapiu {
         }
 
     }
-    public void miscareridicare(String direction, DcMotorEx Glisiera) {
-
-        int a=0;
-
-        if(Objects.equals(direction, "up")){
-            int ticks = (int)(up * VariableStorage.TICKS_PER_CM_Z);
-            Glisiera.setTargetPosition(-ticks+a);
-            Glisiera.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-            Glisiera.setPower(0.1);
-        } else if(Objects.equals(direction, "down")){
-            Glisiera.setTargetPosition((int)(down * VariableStorage.TICKS_PER_CM_Z)+a);
-            Glisiera.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-            Glisiera.setPower(0.7);
-        } else if(Objects.equals(direction, "middle")){
-            int ticks = (int)(middle * VariableStorage.TICKS_PER_CM_Z);
-            Glisiera.setTargetPosition(-ticks+a);
-            Glisiera.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-            Glisiera.setPower(0.7);
-        } else if(Objects.equals(direction, "low")){
-            int ticks = (int)(low * VariableStorage.TICKS_PER_CM_Z);
-            Glisiera.setTargetPosition(-ticks+a);
-            Glisiera.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-            Glisiera.setPower(0.1);
-        } else if(Objects.equals(direction, "little")){
-            Glisiera.setTargetPosition((int)(little * VariableStorage.TICKS_PER_CM_Z)+a);
-            Glisiera.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-            Glisiera.setPower(0.1);
-        }
-
-    }
     public void miscareglisiera(String direction, DcMotorEx Glisiera, DcMotorEx Glisiera1){
-
-
         int a=0;
         if(Objects.equals(direction, "up")){
             int ticks = (int)(up * VariableStorage.TICKS_PER_CM_Z);
@@ -329,57 +282,57 @@ public class hardwarePapiu {
         }
 
     }
-    public void clestes(){
-        try {
-            isOpenC=!isOpenC;
-            if(isOpenC){ //pt inchis
-                ClesteS.setPosition(0.5);
-            }
-            else{ //pt deschis
-                ClesteS.setPosition(0.26);
-            }
-            TimeUnit.MILLISECONDS.sleep(300);
-        } catch (InterruptedException e){
-            Thread.currentThread().interrupt();
-        }
 
-    }
-    public void intake(){
-        try {
-            isOpenI=!isOpenI;
-            if(isOpenI){ //pt inchis
-                Intake1.setPosition(1);
-                Intake2.setPosition(0);
-                Cleste.setPosition(0.5);
-                isOpen=true;
-            }
-            else{ //pt deschis
-                Intake1.setPosition(0.36);
-                Intake2.setPosition(0.64);
-            }
-            TimeUnit.MILLISECONDS.sleep(300);
-        } catch (InterruptedException e){
-            Thread.currentThread().interrupt();
-        }
-
-    }
-    public void active(){
-        try {
-            isOpenA=!isOpenA;
-            if(isOpenA){ //pt inchis
-                IntakeActive.setPower(1);
-                IntakeActive.setDirection(DcMotorSimple.Direction.REVERSE);
-            }
-            else{ //pt deschis
-                IntakeActive.setPower(1);
-                IntakeActive.setDirection(DcMotorSimple.Direction.FORWARD);
-            }
-            TimeUnit.MILLISECONDS.sleep(300);
-        } catch (InterruptedException e){
-            Thread.currentThread().interrupt();
-        }
-
-    }
+//    public void clestes() {
+//        try {
+//            isOpenC = !isOpenC;
+//            if (isOpenC) { //pt inchis
+//                ClesteS.setPosition(0.5);
+//            } else { //pt deschis
+//                ClesteS.setPosition(0.26);
+//            }
+//            TimeUnit.MILLISECONDS.sleep(300);
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//        }
+//
+//    }
+//
+//    public void intake() {
+//        try {
+//            isOpenI = !isOpenI;
+//            if (isOpenI) { //pt inchis
+//                Intake1.setPosition(1);
+//                Intake2.setPosition(0);
+//                Cleste.setPosition(0.5);
+//                isOpen = true;
+//            } else { //pt deschis
+//                Intake1.setPosition(0.36);
+//                Intake2.setPosition(0.64);
+//            }
+//            TimeUnit.MILLISECONDS.sleep(300);
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//        }
+//
+//    }
+//
+//    public void active() {
+//        try {
+//            isOpenA = !isOpenA;
+//            if (isOpenA) { //pt inchis
+//                IntakeActive.setPower(1);
+//                IntakeActive.setDirection(DcMotorSimple.Direction.REVERSE);
+//            } else { //pt deschis
+//                IntakeActive.setPower(1);
+//                IntakeActive.setDirection(DcMotorSimple.Direction.FORWARD);
+//            }
+//            TimeUnit.MILLISECONDS.sleep(300);
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//        }
+//
+//    }
     public void activestop(){
         try {//pt inchis
                 IntakeActive.setPower(0);
@@ -408,21 +361,6 @@ public class hardwarePapiu {
         }
 
     }
-    public void ridicaregamepad(Gamepad gamepad1,DcMotorEx Ridicare1){
-
-        if(gamepad1.dpad_left){
-            miscareridicare("middle",Ridicare1);
-        }
-        if(gamepad1.dpad_up){
-            miscareridicare("up",Ridicare1);
-        }
-        if(gamepad1.dpad_down){
-            miscareridicare("down",Ridicare1);
-        }
-        if(gamepad1.dpad_right){
-            miscareridicare("low",Ridicare1);
-        }
-    }
     public void misumigamepad(Gamepad gamepad1,DcMotorEx Glisiera,DcMotorEx Glisiera1,DcMotorEx Glisiera2){
 
         if(gamepad1.dpad_left){
@@ -442,24 +380,5 @@ public class hardwarePapiu {
         }
 
     }
-  /**  public void glisieragamepad(Gamepad gamepad1,DcMotorEx Glisiera){
-        String[] inaltime = {"down", "little", "low", "middle", "high"};
-        while(i<=inaltime.length){
-                if(gamepad1.dpad_left) {
-                    if(i<inaltime.length-1)i++;
-                    if(i<inaltime.length)miscareglisiera(inaltime[i], Glisiera);
-
-                }
-                if(gamepad1.dpad_right) {
-                    if(i>0)i--;
-                    if(i<inaltime.length)miscareglisiera(inaltime[i], Glisiera);
-
-                }
-                if(gamepad1.dpad_down){
-                    i=0;
-                    miscareglisiera(inaltime[i], Glisiera);
-                }
-        }
-    } **/
 
 }
