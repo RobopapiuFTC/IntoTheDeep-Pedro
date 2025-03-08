@@ -202,6 +202,8 @@ public class AutoColor extends OpMode{
                 break;
             case 1:
                 if(!follower.isBusy()) {
+                    robot.miscareglisiera("little",robot.Glisiera,robot.Glisiera1);
+                    Thread.sleep(100);
                     robot.ServoBrat.setPosition(0.6);
                     robot.ServoBrat1.setPosition(0.6);
                     Thread.sleep(200);
