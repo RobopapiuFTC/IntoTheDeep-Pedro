@@ -189,6 +189,8 @@ public class AutoColor extends OpMode{
         switch (pathState) {
             case 0:
                 follower.followPath(scorePreload);
+                robot.ServoBrat.setPosition(0.5);
+                robot.ServoBrat1.setPosition(0.5);
                 robot.miscareglisiera("little",robot.Glisiera,robot.Glisiera1);
                 setPathState(1);
                 break;
