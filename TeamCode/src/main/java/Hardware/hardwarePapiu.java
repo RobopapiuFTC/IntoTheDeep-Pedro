@@ -57,9 +57,9 @@ public class hardwarePapiu {
     public void init() {
 
         leftFront = myOpMode.hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftBack = myOpMode.hardwareMap.get(DcMotorEx.class, "leftBack");
+        leftBack = myOpMode.hardwareMap.get(DcMotorEx.class, "leftRear");
         rightFront = myOpMode.hardwareMap.get(DcMotorEx.class, "rightFront");
-        rightBack = myOpMode.hardwareMap.get(DcMotorEx.class, "rightBack");
+        rightBack = myOpMode.hardwareMap.get(DcMotorEx.class, "rightRear");
         Glisiera = myOpMode.hardwareMap.get(DcMotorEx.class, "glisiera");
         Glisiera1 = myOpMode.hardwareMap.get(DcMotorEx.class, "glisiera1");
         misumi = myOpMode.hardwareMap.get(DcMotorEx.class, "misumi");
